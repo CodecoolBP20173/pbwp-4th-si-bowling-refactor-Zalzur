@@ -4,7 +4,7 @@ def score(game):
     in_first_half = True
     for i in range(len(game)):
         if game[i] == '/':
-            result += 10 - last
+            result += 10 - last_frame
         else:
             result += get_value(game[i])
         if frame < 10 and get_value(game[i]) == 10:
@@ -16,7 +16,7 @@ def score(game):
                     result += 10 - get_value(game[i+1])
                 else:
                     result += get_value(game[i+2])
-        last = get_value(game[i])
+        last_frame = get_value(game[i])
         if not in_first_half:
             frame += 1
         if in_first_half is True:
