@@ -10,18 +10,18 @@ def score(game):
             result += get_value(game[i])
         if frame < 10 and get_value(game[i]) == 10:
             result = handle_bonus_points(game, i, result)
-        frame, in_first_half_of_frame = decide_which_half_of_frame(frame, in_first_half_of_frame, game, i)
+        frame, in_first_half_of_frame = frame_counter(frame, in_first_half_of_frame, game[i])
     return result
 
 
-def decide_which_half_of_frame(frame, in_first_half_of_frame, game, i):
+def frame_counter(frame, in_first_half_of_frame, char):
     if not in_first_half_of_frame:
         frame += 1
     if in_first_half_of_frame is True:
         in_first_half_of_frame = False
     else:
         in_first_half_of_frame = True
-    if game[i] == 'X' or game[i] == 'x':
+    if char == 'X' or char == 'x':
         in_first_half_of_frame = True
         frame += 1
     return frame, in_first_half_of_frame
