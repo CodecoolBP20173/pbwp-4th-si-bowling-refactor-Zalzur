@@ -4,12 +4,12 @@ def score(game):
     in_first_half_of_frame = True
     for i in range(len(game)):
         if game[i] == '/':
+            last_frame_half = get_value(game[i-1])
             result += 10 - last_frame_half
         else:
             result += get_value(game[i])
         if frame < 10 and get_value(game[i]) == 10:
             result = handle_bonus_points(game, i, result)
-        last_frame_half = get_value(game[i])
         frame, in_first_half_of_frame = decide_which_half_of_frame(frame, in_first_half_of_frame, game, i)
     return result
 
@@ -44,9 +44,7 @@ def get_value(char):
        char == '4' or char == '5' or char == '6' or \
        char == '7' or char == '8' or char == '9':
         return int(char)
-    elif char == 'X' or char == 'x':
-        return 10
-    elif char == '/':
+    elif char == 'X' or char == 'x' or char == '/':
         return 10
     elif char == '-':
         return 0
